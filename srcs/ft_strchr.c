@@ -1,27 +1,32 @@
 #include "../includes/libft.h"
-char *
-__strchr_chk(const char *p, int c, size_t len)
+
+char *__strrchr_chk(const char *p, int c, size_t s_len)
 {
-	while (1)
-	{
-		if (len == 0)
-			__fortify_chk_fail("strchr read beyond buffer", 0);
-		if (*p == (char)c)
-			return (char *)p;
-		if (!*p)
-			return (char *)NULL;
-		p++;
-		len--;
-	}
-	/* NOTREACHED */
+    char *save = NULL;
+    while (1)
+    {
+        if (s_len == 0)
+        {
+            return NULL;
+        }
+
+        if (*p == (char)c)
+            save = (char *)p;
+
+        if (!*p)
+            return save;
+
+        p++;
+        s_len--;
+    }
+    /* NOTREACHED */
 }
 
-char *
-ft_strchr(const char *s, int c)
+char *ft_strrchr(const char *s, int c)
 {
-	size_t len = 0;
-	while (s[len])
-		len++;
-
-	return __strchr_chk(s, c, len);
+    size_t s_len = 0;
+    while (s[s_len])
+        s_len++;
+    return __strrchr_chk(s, c, s_len);
 }
+

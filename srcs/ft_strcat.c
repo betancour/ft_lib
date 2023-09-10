@@ -27,4 +27,3 @@ size_t ft_strlcat(char *dst, const char *src, size_t size)
 	*dst = '\0';
 	return (dlen + (src - osrc));
 }
-DEF_WEAK(ft_strlcat);

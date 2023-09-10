@@ -22,4 +22,3 @@ size_t ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return(src - osrc - 1);
 }
-DEF_WEAK(ft_strlcpy);
