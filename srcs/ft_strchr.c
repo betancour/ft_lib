@@ -19,7 +19,6 @@ char *__strrchr_chk(const char *p, int c, size_t s_len)
         p++;
         s_len--;
     }
-    /* NOTREACHED */
 }
 
 char *ft_strrchr(const char *s, int c)
@@ -29,4 +28,3 @@ char *ft_strrchr(const char *s, int c)
         s_len++;
     return __strrchr_chk(s, c, s_len);
 }
-
