@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <unistd.h>
 
 static size_t str_len(char *str)
 {
@@ -15,6 +16,6 @@ void ft_putendl_fd(char *s, int fd)
 	if (s)
 	{
 		write(fd, s, str_len(s));
-		write(fd, '\n', 1);
+		write(fd,"\n", 1);
 	}
 }

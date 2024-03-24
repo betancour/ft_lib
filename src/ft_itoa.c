@@ -29,7 +29,7 @@ char	*ft_itoa(int n)
 	if (n == INT_MIN)
 		return (ft_strdup(INT_MIN_STR));
 
-	len = get_number_length(n);
+	len = ft_get_number_length(n);
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 

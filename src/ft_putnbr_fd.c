@@ -6,9 +6,9 @@ static int ft_base_check(const char *base)
 		return (1);
 	while (*base)
 	{
-		if (*base, = 32 || *base >= 127 || *base == ' ')
+		if (*base == 32 || *base >= 127 || *base == ' ')
 			return (1);
-		if (ft_strchr(base + 1, *base))
+		if (ft_strrchr(base + 1, *base))
 			return (1);
 		base++;
 	}

@@ -14,11 +14,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 
 	start = 0;
-	while (s1[start] && is_whitespace(s1[start]) && ft_strchr(set, s1[start]))
+	while (s1[start] && is_whitespace(s1[start]) && ft_strrchr(set, s1[start]))
 		start++;
 
 	end = ft_strlen(s1);
-	while (end > start && is_whitespace(s1[end - 1]) && ft_strchr(set, s1[end - 1]))
+	while (end > start && is_whitespace(s1[end - 1]) && ft_strrchr(set, s1[end - 1]))
 		end--;
 
 	if (start >= end)
