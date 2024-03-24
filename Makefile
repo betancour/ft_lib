@@ -1,8 +1,8 @@
 NAME := Libft
 CC := gcc
-CFLAGS := -Wall -Werror -Wextra -Iincludes -c
+CFLAGS := -Wall -Werror -Wextra -Iinclude -c
 LFLAGS := -Wall -Werror -Wextra -o
-SRC_DIR := ./srcs/
+SRC_DIR := ./src/
 OBJ_DIR := ./obj/
 SRC_FILES :=ft_isalpha.c \
             ft_isdigit.c \
@@ -27,7 +27,7 @@ SRC_FILES :=ft_isalpha.c \
 OBJ_FILES := $(SRC_FILES:.c=.o)
 SRCS := $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS := $(addprefix $(OBJ_DIR), $(OBJ_FILES))
-HEADER := -Iincludes/
+HEADER := -Iinclude/
 RM := rm -f
 
 all: obj $(NAME)
