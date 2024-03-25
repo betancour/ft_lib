@@ -1,9 +1,9 @@
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sub;
-	size_t	s_len;
+	char *sub;
+	size_t s_len;
 
 	if (!s)
 		return (NULL);

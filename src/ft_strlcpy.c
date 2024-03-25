@@ -9,16 +9,16 @@ size_t ft_strlcpy(char *dst, const char *src, size_t size)
 	{
 		while (--nleft != 0)
 		{
-			if((*dst++ = *src) == '\0')
+			if ((*dst++ = *src) == '\0')
 				break;
 		}
 	}
-	if(nleft == 0)
+	if (nleft == 0)
 	{
-		if(size != 0)
+		if (size != 0)
 			*dst = '\0';
-		while(*src++)
+		while (*src++)
 			;
 	}
-	return(src - osrc - 1);
+	return (src - osrc - 1);
 }

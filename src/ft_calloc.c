@@ -8,9 +8,9 @@ void *ft_calloc(size_t count, size_t size)
 	{
 		count = 1;
 		size = 1;
-    }
+	}
 
-    ptr = malloc(count * size);
+	ptr = malloc(count * size);
 	if (ptr == NULL)
 		return (NULL);
 

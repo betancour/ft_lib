@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	s1_len;
-	size_t	s2_len;
-	size_t	len;
-	char	*ret;
+	size_t s1_len;
+	size_t s2_len;
+	size_t len;
+	char *ret;
 
 	if (!s1 || !s2)
 		return (NULL);

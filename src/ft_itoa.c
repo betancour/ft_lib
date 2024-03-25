@@ -2,9 +2,9 @@
 
 #define INT_MIN_STR "-2147483648"
 
-static size_t	ft_get_number_length(int n)
+static size_t ft_get_number_length(int n)
 {
-	size_t	len;
+	size_t len;
 
 	len = (n == 0) ? 1 : 0;
 	if (n < 0)
@@ -20,11 +20,11 @@ static size_t	ft_get_number_length(int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char *ft_itoa(int n)
 {
-	char	*str;
-	size_t	len;
-	size_t	i;
+	char *str;
+	size_t len;
+	size_t i;
 
 	if (n == INT_MIN)
 		return (ft_strdup(INT_MIN_STR));
