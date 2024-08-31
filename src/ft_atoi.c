@@ -1,22 +1,22 @@
-#include "libft.h"
+#include "../include/libft.h"
 
-static int ft_isspace(char c)
+static int	ft_isspace(char c)
 {
-    return (
-            c == ' ' || 
-            c == '\t' || 
-            c == '\n' || 
-            c == '\v' || 
-            c == '\f' || 
-            c == '\r'
-           );
+	return (
+			c == ' ' ||
+			c == '\t' ||
+			c == '\n' ||
+			c == '\v' ||
+			c == '\f' ||
+			c == '\r'
+	);
 }
 
-int ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
-	size_t i;
-	int sign;
-	int result;
+	size_t	i;
+	int	sign;
+	int	result;
 
 	i = 0;
 	result = 0;

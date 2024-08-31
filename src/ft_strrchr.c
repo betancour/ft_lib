@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../include/libft.h"
 
 char *__strrchr_chk(const char *p, int c, size_t s_len)
 {

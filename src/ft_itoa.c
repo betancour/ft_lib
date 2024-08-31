@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../include/libft.h"
 
 #define INT_MIN_STR "-2147483648"
 

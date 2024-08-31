@@ -1,5 +1,4 @@
-#include "libft.h"
-#include <unistd.h>
+#include "../include/libft.h"
 
 static size_t str_len(char *str)
 {
