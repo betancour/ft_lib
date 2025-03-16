@@ -1,53 +1,44 @@
-#include "../include/libft.h"
+#include "libft.h"
 
-#ifndef INT_MAX
-#define INT_MAX 2147483647
-#endif
-
-#ifndef INT_MIN
-#define INT_MIN (-INT_MAX - 1)
-#endif
-
-
-static int ft_isspace(char c)
+int ft_isspace(int c)
 {
-	return (
-		c == ' ' ||
-		c == '\t' ||
-		c == '\n' ||
-		c == '\v' ||
-		c == '\f' ||
-		c == '\r');
+
+	if (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32)
+
+		return (1);
+	return (0);
 }
 
-int ft_atoi(const char *nptr)
+int ft_atoi(const char *str)
 {
-	size_t i;
-	int sign;
 	int result;
+	int sign;
+	int i;
 
-	i = 0;
 	result = 0;
 	sign = 1;
+	i = 0;
 
-	while (ft_isspace(nptr[i]))
+	while (ft_isspace(str[i]))
 		i++;
 
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (str[i] == '+' && str[i + 1] != '-')
+		i++;
+
+	if (str[i] == '-')
 	{
-		if (nptr[i] == '-')
-			sign = -1;
+		sign = -1;
 		i++;
 	}
 
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (str[i] && str[i] >= 48 && str[i] <= 57)
 	{
-		if (result > (INT_MAX - (nptr[i] - '0')) / 10)
-		{
-			return (sign == 1 ? INT_MAX : INT_MIN);
-		}
-		result = result * 10 + (nptr[i] - '0');
+
+		result *= 10;
+		result += str[i] - 48;
 		i++;
 	}
-	return (sign * result);
+
+	result *= sign;
+	return (result);
 }

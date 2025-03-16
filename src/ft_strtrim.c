@@ -1,4 +1,4 @@
-#include "../include/libft.h"
+#include "libft.h"
 
 static int is_whitespace(char   c)
 {

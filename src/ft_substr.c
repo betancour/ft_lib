@@ -1,4 +1,4 @@
-#include "../include/libft.h"
+#include "libft.h"
 
 char *ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -10,7 +10,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 
 	s_len = ft_strlen(s);
 
-	if (start >= s_len)
+	if (start >= s_len || len == 0)
 		return (ft_strdup(""));
 
 	if (len > s_len - start)

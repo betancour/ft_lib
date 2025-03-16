@@ -1,26 +1,36 @@
-#include "../include/libft.h"
+#include "libft.h"
 
 static int ft_base_check(const char *base)
 {
-	if (!base || *base)
+	int i;
+	int j;
+
+	if (!base || ft_strlen(base) < 2)
 		return (1);
-	while (*base)
+	i = 0;
+	while (base[i])
 	{
-		if (*base == 32 || *base >= 127 || *base == ' ')
+		if (base[i] <= 32 || base[i] >= 127)
 			return (1);
-		if (ft_strrchr(base + 1, *base))
-			return (1);
-		base++;
+		j = i + 1;
+		while (base[j])
+		{
+			if (base[i] == base[j])
+				return (1);
+			j++;
+		}
+		i++;
 	}
 	return (0);
 }
 
 static void ft_putnbr_base_fd(long long int nbr, const char *base, int fd)
 {
-	int base_len = ft_strlen(base);
+	int base_len;
 
-	if (ft_base_check(base))
+	if (ft_base_check(base) || fd < 0)
 		return;
+	base_len = ft_strlen(base);
 	if (nbr < 0)
 	{
 		ft_putchar_fd('-', fd);

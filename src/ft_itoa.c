@@ -1,9 +1,11 @@
-#include "../include/libft.h"
+#include "libft.h"
 
 #define INT_MIN_STR "-2147483648"
 
 static size_t ft_get_number_length(int n)
 {
+    if (n == INT_MIN)
+        return (11);
 	size_t len;
 
 	len = (n == 0) ? 1 : 0;
@@ -25,29 +27,31 @@ char *ft_itoa(int n)
 	char *str;
 	size_t len;
 	size_t i;
+	unsigned int num;
 
 	if (n == INT_MIN)
 		return (ft_strdup(INT_MIN_STR));
 
 	len = ft_get_number_length(n);
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
 
-	i = len;
-	str[i] = '\0';
-	if (n < 0)
+	str[len] = '\0';
+	num = (n < 0) ? -n : n;
+	i = len - 1;
+	if (n == 0)
+		str[0] = '0';
+	else
 	{
-		str[0] = '-';
-		n = -n;
+		while (num > 0)
+		{
+			str[i] = (num % 10) + '0';
+			num /= 10;
+			i--;
+		}
+		if (n < 0)
+			str[0] = '-';
 	}
-
-	i--;
-	while (n > 0)
-	{
-		str[i] = (n % 10) + '0';
-		n /= 10;
-		i--;
-	}
-
 	return (str);
 }

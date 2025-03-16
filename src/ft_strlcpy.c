@@ -1,24 +1,23 @@
-#include "../include/libft.h"
+#include "libft.h"
 
 size_t ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	const char *osrc = src;
-	size_t nleft = size;
+	size_t src_len = 0;
 
-	if (nleft != 0)
+	while (src[src_len] != '\0')
+		src_len++;
+
+	if (size == 0)
+		return (src_len);
+
+	while (*src && size > 1)
 	{
-		while (--nleft != 0)
-		{
-			if ((*dst++ = *src) == '\0')
-				break;
-		}
+		*dst++ = *src++;
+		size--;
 	}
-	if (nleft == 0)
-	{
-		if (size != 0)
-			*dst = '\0';
-		while (*src++)
-			;
-	}
-	return (src - osrc - 1);
+
+	if (size > 0)
+		*dst = '\0';
+
+	return (src_len);
 }

@@ -1,8 +1,11 @@
-#include "../include/libft.h"
+#include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char *ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	needle_len;
+	size_t needle_len;
+
+	if (!haystack && len == 0)
+		return (NULL);
 
 	if (!*needle)
 		return ((char *)haystack);
