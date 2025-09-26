@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <limits.h>
 
 static int ft_base_check(const char *base)
 {

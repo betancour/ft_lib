@@ -2,20 +2,8 @@
 #ifndef LIBFT_H
 #define LIBFT_H
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 100
-#endif
-
-#ifndef MAX_FD
-#define MAX_FD 4096
-#endif
-
-#include <unistd.h>    // For write, read
-#include <stdlib.h>    // For malloc, free
-#include <string.h>    // For strlen (optional reference)
-#include <fcntl.h>     // For open (if used in get_next_line)
-#include <limits.h>    // For INT_MAX (if used in ft_atoi)
-#include <stdarg.h>    // For va_list (if implementing ft_printf)
+#include <unistd.h>
+#include <stdlib.h>
 
 typedef struct s_list
 {
@@ -34,15 +22,12 @@ int     ft_tolower(int c);
 
 // 2. String Manipulation Functions
 size_t  ft_strlen(const char *s);
-int     ft_strcmp(const char *s1, const char *s2);
 char    *ft_strrchr(const char *s, int c);
 char    *ft_strchr(const char *s, int c);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
-char    *ft_strcpy(char *dst, const char *src);
-char    *ft_strncpy(char *dst, const char *src, size_t len);
 char    *ft_strcat(char *s1, const char *s2);
-char    *ft_strncat(char *s1, const char *s2, size_t n);
 size_t  ft_strlcpy(char *dst, const char *src, size_t size);
+char    *ft_strnstr(const char *haystack, const char *needle, size_t len);
 char    *ft_substr(const char *s, unsigned int start, size_t len);
 char    *ft_strjoin(const char *s1, const char *s2);
 char    *ft_strtrim(const char *s1, const char *set);
@@ -60,7 +45,6 @@ void    *ft_memmove(void *dst, const void *src, size_t len);
 void    *ft_memchr(const void *s, int c, size_t n);
 int     ft_memcmp(const void *s1, const void *s2, size_t n);
 void    *ft_calloc(size_t count, size_t len);
-void    *ft_memccpy(void *dst, const void *src, int c, size_t n);
 
 // 4. List Functions (t_list based)
 t_list  *ft_lstnew(void *content);
@@ -74,9 +58,6 @@ void    ft_lstiter(t_list *lst, void (*f)(void *));
 t_list  *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // 5. I/O Functions
-void    ft_putchar(char c);
-void    ft_putstr(char *str);
-void    ft_putnbr(int nbr);
 void    ft_putchar_fd(char c, int fd);
 void    ft_putstr_fd(char *str, int fd);
 void    ft_putendl_fd(char *str, int fd);
@@ -84,7 +65,5 @@ void    ft_putnbr_fd(int n, int fd);
 
 // 6. Utility and Conversion Functions
 int     ft_atoi(const char *str);
-long    ft_atol(const char *s);
-int     ft_pow(int nb, int power);
 
 #endif
