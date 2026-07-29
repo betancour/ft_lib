@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: betanco <betanco@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/29 12:00:00 by betanco           #+#    #+#             */
+/*   Updated: 2026/07/29 12:00:00 by betanco          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void ft_lstadd_back(t_list **alst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *last;
+	t_list	*last;
 
-	if (!alst || !new)
-		return;
-	if (!*alst)
+	if (!lst || !new)
+		return ;
+	if (!*lst)
 	{
-		*alst = new;
-		return;
+		*lst = new;
+		return ;
 	}
-	last = ft_lstlast(*alst);
-	if (last)
-		last->next = new;
+	last = ft_lstlast(*lst);
+	last->next = new;
 }

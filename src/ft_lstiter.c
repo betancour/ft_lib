@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: betanco <betanco@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/29 12:00:00 by betanco           #+#    #+#             */
+/*   Updated: 2026/07/29 12:00:00 by betanco          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list *tmp;
-
-	tmp = lst;
-
-	while (tmp)
+	if (!f)
+		return ;
+	while (lst)
 	{
-		f(tmp->content);
-
-		tmp = tmp->next;
+		f(lst->content);
+		lst = lst->next;
 	}
 }

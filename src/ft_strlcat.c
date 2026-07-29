@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: betanco <betanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,24 @@
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned char	*ptr;
-	unsigned char	value;
+	size_t	dst_len;
+	size_t	src_len;
+	size_t	i;
 
-	ptr = (unsigned char *)b;
-	value = (unsigned char)c;
-	while (len > 0)
+	src_len = ft_strlen(src);
+	dst_len = 0;
+	while (dst[dst_len] && dst_len < dstsize)
+		dst_len++;
+	if (dst_len == dstsize)
+		return (dstsize + src_len);
+	i = 0;
+	while (src[i] && (dst_len + i + 1) < dstsize)
 	{
-		*ptr = value;
-		ptr++;
-		len--;
+		dst[dst_len + i] = src[i];
+		i++;
 	}
-	return (b);
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }

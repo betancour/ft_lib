@@ -1,77 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: betanco <betanco@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/29 12:00:00 by betanco           #+#    #+#             */
+/*   Updated: 2026/07/29 12:00:00 by betanco          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdint.h>
 
-void *ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char *d = (unsigned char *)dest;
-	const unsigned char *s = (const unsigned char *)src;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	if (d == s || n == 0)
-		return (dest);
-	
-	// Check for overlap
-	if (s < d && d < s + n)
+	if (!dst && !src)
+		return (NULL);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	if (d < s)
 	{
-		// Copy backwards to avoid overlap
-		s += n;
-		d += n;
-		
-		// Optimize for large copies
-		if (n >= 8)
-		{
-			// Align to word boundary
-			while (((uintptr_t)d & (sizeof(size_t) - 1)) && n)
-			{
-				*(--d) = *(--s);
-				n--;
-			}
-			
-			// Copy word-sized chunks backwards
-			size_t *dword = (size_t *)d;
-			const size_t *sword = (const size_t *)s;
-			while (n >= sizeof(size_t))
-			{
-				*(--dword) = *(--sword);
-				n -= sizeof(size_t);
-			}
-			
-			d = (unsigned char *)dword;
-			s = (const unsigned char *)sword;
-		}
-		
-		// Handle remaining bytes
-		while (n--)
-			*(--d) = *(--s);
+		while (len--)
+			*d++ = *s++;
 	}
 	else
 	{
-		// No overlap, use optimized memcpy-like approach
-		if (n >= 8)
-		{
-			// Align destination to word boundary
-			while (((uintptr_t)d & (sizeof(size_t) - 1)) && n)
-			{
-				*d++ = *s++;
-				n--;
-			}
-			
-			// Copy word-sized chunks
-			size_t *dword = (size_t *)d;
-			const size_t *sword = (const size_t *)s;
-			while (n >= sizeof(size_t))
-			{
-				*dword++ = *sword++;
-				n -= sizeof(size_t);
-			}
-			
-			d = (unsigned char *)dword;
-			s = (const unsigned char *)sword;
-		}
-		
-		// Handle remaining bytes
-		while (n--)
-			*d++ = *s++;
+		d += len;
+		s += len;
+		while (len--)
+			*--d = *--s;
 	}
-	
-	return (dest);
+	return (dst);
 }

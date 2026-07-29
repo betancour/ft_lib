@@ -1,49 +1,59 @@
-# Project name and output library
-NAME := libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: betanco <betanco@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/07/29 12:00:00 by betanco           #+#    #+#              #
+#    Updated: 2026/07/29 12:00:00 by betanco          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# Compiler and flags
-CC := gcc
-CFLAGS := -Wall -Wextra -Werror -Iinclude -c
-# -c flag must precede -o in GCC syntax, handled in the rule below
+NAME		= libft.a
 
-# Directories
-SRC_DIR := ./src/
-OBJ_DIR := ./obj/
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
+AR			= ar rcs
+RM			= rm -f
 
-# Source and object files
-SRC_FILES := $(wildcard $(SRC_DIR)*.c)
-OBJ_FILES := $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC_FILES))
-OBJS := $(OBJ_FILES)
+SRC_DIR		= src
+OBJ_DIR		= obj
+INC_DIR		= include
 
-# Remove command
-RM := rm -f
+SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+			  ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
+			  ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
+			  ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
+			  ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
+			  ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+			  ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-# Default target
-all: obj $(NAME)
+BONUS_SRCS	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+			  ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
+			  ft_lstmap.c
 
-# Create object directory if it doesn't exist
-obj:
-	@mkdir -p $(OBJ_DIR)
+OBJS		= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+BONUS_OBJS	= $(addprefix $(OBJ_DIR)/, $(BONUS_SRCS:.c=.o))
 
-# Compile source files to object files with header dependency
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c include/libft.h
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $< -o $@ -Iinclude
+all: $(NAME)
 
-# Create the library archive
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
-# Clean object files and directory
+bonus: $(OBJS) $(BONUS_OBJS)
+	$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/libft.h
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+
 clean:
-	@$(RM) -r $(OBJ_DIR)
+	$(RM) -r $(OBJ_DIR)
 
-# Clean everything
 fclean: clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
-# Rebuild everything
 re: fclean all
 
-# Phony targets
-.PHONY: all obj clean fclean re
+.PHONY: all bonus clean fclean re

@@ -1,37 +1,55 @@
-# ftlib - 42 School libc Implementation
+# libft — 42 School
 
-ftlib is a custom C library implementation inspired by the libc standard library. It has been developed as part of my studies at 42 School, following the guidelines and requirements set by the school.
+Custom C library reimplementing a subset of libc, plus useful helpers and a
+linked-list API (bonus). Written to match the **42 Norme** and the **libft**
+subject.
 
-## Table of Contents
+## Layout
 
-- [About](#about)
-- [Features](#features)
-- [Usage](#usage)
-- [Build](#build)
-- [Contributing](#contributing)
-- [License](#license)
+```
+ft_lib/
+├── Makefile
+├── README.md
+├── include/
+│   └── libft.h
+└── src/
+    └── ft_*.c
+```
 
-## About
+## Build
 
-The ftlib library is designed to provide a collection of common C functions, similar to those found in the standard C library (libc). It's intended to be used for educational purposes and as part of various programming assignments at 42 School.
-
-## Features
-
-- Custom implementations of standard C library functions.
-- Follows the Norme guidelines and requirements of 42 School.
-- Designed to be used in 42 School projects and assignments.
+```bash
+make          # mandatory part → libft.a
+make bonus    # mandatory + list functions
+make clean    # remove object files
+make fclean   # remove objects and libft.a
+make re       # fclean + all
+```
 
 ## Usage
-
-To use ftlib in your 42 School projects, you can include the `libft.h` header and link your project with the `libft.a` library.
-
-Here's an example of how to use ftlib in your C project:
 
 ```c
 #include "libft.h"
 
-int main() {
-    char *str = "Hello, ftlib!";
-    ft_putstr(str);
-    return 0;
+int	main(void)
+{
+	ft_putendl_fd("Hello, libft!", 1);
+	return (0);
 }
+```
+
+Compile against the archive:
+
+```bash
+cc -Wall -Wextra -Werror -Iinclude your_main.c -L. -lft -o your_program
+```
+
+## Norme
+
+All `.c` / `.h` files carry a 42 header and pass `norminette`.
+
+> Update the author login in the 42 headers if yours is not `betanco`.
+
+## License
+
+See `doc/LICENSE`.
